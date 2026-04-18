@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Nosotros - Hogar Smart</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            font-size: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        .cta-button {
+            background: #ff6b6b;
+            padding: 10px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(102, 126, 234, 0.9), rgba(118, 75, 162, 0.9)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23667eea" width="1200" height="600"/><path fill="%23f8fafc" opacity="0.1" d="M0 300 Q300 100 600 300 T1200 300 V600 H0 Z"/><circle fill="%23ff6b6b" opacity="0.2" cx="300" cy="200" r="80"/><circle fill="%234fd1c7" opacity="0.2" cx="900" cy="250" r="60"/></svg>');
+            background-size: cover;
+            background-position: center;
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 70px;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #2d3748;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #64748b;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+        }
+
+        /* Our Story */
+        .story-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .story-text h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #667eea;
+        }
+
+        .story-text p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: #4a5568;
+        }
+
+        .timeline {
+            position: relative;
+        }
+
+        .timeline-item {
+            background: white;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -20px;
+            top: 2.5rem;
+            width: 12px;
+            height: 12px;
+            background: #667eea;
+            border-radius: 50%;
+        }
+
+        .timeline-item:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .timeline-item:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .timeline-item:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .timeline-year {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Mission Section */
+        .mission {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        }
+
+        .mission-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .mission-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .mission-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .mission-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .mission-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #2d3748;
+        }
+
+        /* Team Section */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .team-member {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .team-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+        }
+
+        .team-member h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #2d3748;
+        }
+
+        .team-role {
+            color: #667eea;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        /* Stats */
+        .stats {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        /* CTA */
+        .cta {
+            background: #f8fafc;
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #2d3748;
+        }
+
+        /* Footer */
+        footer {
+            background: #1e293b;
+            color: white;
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+        }
+
+        .footer-section a {
+            color: #94a3b8;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #334155;
+            color: #64748b;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+
+            .story-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .timeline-item::before {
+                left: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">
+                <i class="fas fa-home"></i>
+                Hogar Smart
+            </div>
+            <ul class="nav-links">
+                <li><a href="Inicio.html">Inicio</a></li>
+                <li><a href="sobre nosotros.html">Sobre Nosotros</a></li>
+                <li><a href="productos.html">Productos</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Sobre Hogar Smart</h1>
+            <p>Somos pioneros en tecnología para el hogar. Desde 2025, conectamos millones de hogares con soluciones
+                inteligentes que transforman la vida cotidiana.</p>
+        </div>
+    </section>
+
+    <!-- Our Story -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Nuestra Historia</h2>
+            <div class="story-grid">
+                <div class="story-text">
+                    <h3>De una idea a la revolución del hogar inteligente</h3>
+                    <p>Todo comenzó en 2025 cuando un grupo de estudiantes apasionados por la domótica soñaron con hacer
+                        la tecnología accesible para todos. Hoy, Hogar Smart es líder en Latinoamérica con más de 10,000
+                        hogares conectados.</p>
+                    <p>Nuestra misión es simple: hacer que cada hogar sea más seguro, eficiente y cómodo mediante
+                        innovación constante y un servicio excepcional.</p>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-year">Mision</div>
+                        <strong></strong><br>
+                        Ofrecer soluciones tecnologicas y segura para los hogares
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">Vision</div>
+                        <strong></strong><br>
+                        Convertirnos en una empresa reconocida por ofrecer soluciones tecnologicas
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">valores</div>
+                        <strong></strong><br>
+                        Inovacion,
+                        Calidad,
+                        Responsabilidad y
+                        Buen servicio
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission -->
+    <section class="section mission">
+        <div class="container">
+            <h2 class="section-title">Nuestra Filosofía</h2>
+            <p class="section-subtitle">Tres pilares que guían cada decisión que tomamos</p>
+            <div class="mission-grid">
+                <div class="mission-card">
+                    <div class="mission-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Personas Primero</h3>
+                    <p>Diseñamos para mejorar la vida real de las familias, no solo para impresionar con tecnología.</p>
+                </div>
+                <div class="mission-card">
+                    <div class="mission-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Innovación Constante</h3>
+                    <p>Actualizaciones mensuales y desarrollo propio para estar siempre a la vanguardia.</p>
+                </div>
+                <div class="mission-card">
+                    <div class="mission-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>Soporte 24/7</h3>
+                    <p>Nuestro equipo está disponible las 24 horas para garantizar tu tranquilidad.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Nuestro Equipo</h2>
+            <p class="section-subtitle">Expertos apasionados por la tecnología del hogar</p>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="team-photo">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h4>Oscar Peralta</h4>
+                    <div class="team-role">CEO</div>
+                    <p>Estudiado en domótica</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-photo">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h4>Angel Martes</h4>
+                    <div class="team-role">CTO</div>
+                    <p>Arquitecto de sistemas</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-photo">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <h4>Diogenny Parra</h4>
+                    <div class="team-role">Head de Producto</div>
+                    <p>Diseño UX/UI</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-photo">
+                        <i class="fas fa-user-cog"></i>
+                    </div>
+                    <h4>Yendry Lantigua</h4>
+                    <div class="team-role">Soporte Técnico</div>
+                    <p>+5 años experiencia</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="section stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div>
+                    <div class="stat-number">10K+</div>
+                    <div>Hogares conectados</div>
+                </div>
+                <div>
+                    <div class="stat-number">50+</div>
+                    <div>Empleados expertos</div>
+                </div>
+                <div>
+                    <div class="stat-number">5</div>
+                    <div>Países de cobertura</div>
+                </div>
+                <div>
+                    <div class="stat-number">99.9%</div>
+                    <div>Satisfacción cliente</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section cta">
+        <div class="container">
+            <h2>Únete a la revolución del hogar inteligente</h2>
+            <p>Conoce cómo podemos transformar tu hogar con nuestra tecnología probada.</p>
+            <a href="index.html#productos" class="btn"
+                style="background: #ff6b6b; color: white; padding: 18px 40px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 1.2rem; display: inline-block; margin-top: 2rem;">Ver
+                Nuestros Productos</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Hogar Smart</h3>
+                <p>Tecnología inteligente para tu hogar. Conectividad, seguridad y confort en un solo lugar.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Enlaces</h3>
+                <a href="Inicio.html">Inicio</a>
+                <a href="productos.html">Productos</a>
+                <a href="#">Soporte</a>
+                <a href="#">Blog</a>
+            </div>
+            <div class="footer-section">
+                <h3>Contacto</h3>
+                <a href="#">+57 300 123 4567</a>
+                <a href="#">hola@hogarsmart.com</a>
+                <a href="#">Santiago, republica dominicana</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Hogar Smart. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.background = 'rgba(102, 126, 234, 0.95)';
+                header.style.backdropFilter = 'blur(10px)';
+            } else {
+                header.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+                header.style.backdropFilter = 'none';
+            }
+        });
+    </script>
+</body>
+
+</html>
