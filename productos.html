@@ -1,0 +1,1432 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promociones Lámparas Inteligentes - Hogar Smart</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Header / Nav (same as Inicio.html) */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s, backdrop-filter 0.3s;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            font-size: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        /* Page specific header */
+        .page-header {
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 120px 20px 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .page-header img {
+            max-width: 150px;
+            height: auto;
+            margin-bottom: 15px;
+            filter: invert(1);
+            mix-blend-mode: screen;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(102, 126, 234, 0.8), rgba(118, 75, 162, 0.8)),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 300"><rect fill="%23e8f5e8" width="1000" height="300"/><circle fill="%23667eea" cx="150" cy="80" r="30"/><circle fill="%23ff6b6b" cx="400" cy="120" r="25"/><circle fill="%23764ba2" cx="700" cy="90" r="35"/><circle fill="%234fd1c7" cx="900" cy="200" r="20"/></svg>');
+            background-size: cover;
+            text-align: center;
+            padding: 60px 20px;
+            color: white;
+        }
+
+        .hero h2 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .promo-container {
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .promo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .promo-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .promo-card:nth-child(even) {
+            animation-delay: 1.5s;
+        }
+
+        .promo-card:hover {
+            animation-play-state: paused;
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+        }
+
+        .promo-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .discount-badge {
+            background: #ff6b6b;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            display: inline-block;
+            animation: pulse 2s infinite;
+        }
+
+        .price {
+            font-size: 1.8em;
+            color: #27ae60;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+
+        .old-price {
+            text-decoration: line-through;
+            color: #95a5a6;
+            font-size: 1.2em;
+        }
+
+        .btn {
+            background: #ff6b6b;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+        }
+
+        .features {
+            background: #f8f9fa;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .features h3 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .features ul {
+            list-style: none;
+            padding: 0;
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: left;
+            display: inline-block;
+        }
+
+        .features li {
+            padding: 10px 0;
+            font-size: 1.1em;
+        }
+
+        .features li:before {
+            content: "✨";
+            color: #ff6b6b;
+            font-weight: bold;
+            font-size: 1.3em;
+            margin-right: 10px;
+        }
+
+        .bottom-nav {
+            background: #1e293b;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 20px 0;
+            border-bottom: 1px solid #334155;
+        }
+
+        .bottom-nav a {
+            color: #94a3b8;
+            padding: 10px 20px;
+            text-decoration: none;
+            display: inline-block;
+            transition: color 0.3s ease;
+        }
+
+        .bottom-nav a:hover {
+            color: white;
+        }
+
+        footer {
+            background: #1e293b;
+            color: #64748b;
+            text-align: center;
+            padding: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .hero h2 {
+                font-size: 2em;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+
+        /* Modal de Compra Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            border-radius: 20px;
+            padding: 30px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+            animation: slideUp 0.4s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .close-modal {
+            color: #aaa;
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .close-modal:hover {
+            color: #333;
+        }
+
+        .modal h2 {
+            color: #2d3748;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .product-summary {
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+            border: 1px solid #e2e8f0;
+        }
+
+        .product-summary h3 {
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #4a5568;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .btn-confirm {
+            width: 100%;
+            background: #10b981;
+            color: white;
+            font-size: 1.1rem;
+            padding: 12px;
+            margin-top: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .btn-confirm:hover {
+            background: #059669;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(16, 185, 129, 0.4);
+        }
+
+        /* Glassmorphism Sidebar */
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(4px);
+            z-index: 2500;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .sidebar-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 100%;
+            max-width: 380px;
+            height: 100vh;
+            background: rgba(255, 255, 255, 0.85);
+            /* Light Glassmorphism */
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-left: 1px solid rgba(255, 255, 255, 0.5);
+            z-index: 3000;
+            transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            color: #333;
+            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.05);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-y: auto;
+        }
+
+        .sidebar.active {
+            right: 0;
+        }
+
+        .sidebar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .sidebar-header h2 {
+            font-size: 1.5rem;
+            margin: 0;
+            color: #2d3748;
+            font-weight: bold;
+        }
+
+        .close-sidebar {
+            background: none;
+            border: none;
+            color: #94a3b8;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .close-sidebar:hover {
+            color: #ff6b6b;
+        }
+
+        .sidebar-search {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .sidebar-search input {
+            width: 100%;
+            padding: 12px 15px 12px 40px;
+            background: rgba(102, 126, 234, 0.05);
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            border-radius: 12px;
+            color: #333;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .sidebar-search input:focus {
+            background: white;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .sidebar-search i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #667eea;
+        }
+
+        .sidebar-categories h3 {
+            font-size: 1.1rem;
+            color: #4a5568;
+            margin-bottom: 15px;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .cat-item {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 15px 10px;
+            text-align: center;
+            color: #4a5568;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .cat-item i {
+            font-size: 1.5rem;
+            color: #667eea;
+        }
+
+        .cat-item:hover {
+            border-color: #667eea;
+            color: #667eea;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.15);
+        }
+
+        .sidebar-featured {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            border-radius: 16px;
+            padding: 20px;
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .featured-badge {
+            position: absolute;
+            top: -10px;
+            right: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: bold;
+            padding: 4px 10px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 10px rgba(102, 126, 234, 0.3);
+        }
+
+        .sidebar-featured h4 {
+            margin: 0 0 5px 0;
+            color: #2d3748;
+            font-size: 1.1rem;
+        }
+
+        .sidebar-featured p {
+            color: #64748b;
+            font-size: 0.85rem;
+            margin: 0 0 10px 0;
+        }
+
+        .featured-link {
+            color: #667eea;
+            font-size: 0.9rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .featured-link:hover {
+            text-decoration: underline;
+        }
+
+        .cart-items-container {
+            flex-grow: 1;
+            margin-bottom: 20px;
+        }
+
+        .cart-item {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 12px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
+        }
+
+        .cart-item-info h4 {
+            margin: 0 0 5px 0;
+            font-size: 0.9rem;
+            color: #2d3748;
+        }
+
+        .cart-item-info p {
+            margin: 0;
+            color: #ff6b6b;
+            font-weight: bold;
+            font-size: 0.85rem;
+        }
+
+        .cart-item-remove {
+            background: none;
+            border: none;
+            color: #cbd5e1;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: color 0.3s;
+            padding: 5px;
+            margin-left: 10px;
+        }
+
+        .cart-item-remove:hover {
+            color: #ef4444;
+        }
+
+        .sidebar-footer {
+            margin-top: auto;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #2d3748;
+        }
+
+        .btn-checkout {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-checkout:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+        }
+
+        #cart-count {
+            position: absolute;
+            top: -10px;
+            right: -15px;
+            background: #ff6b6b;
+            color: white;
+            font-size: 0.75rem;
+            font-weight: bold;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Fixed Navigation Bar -->
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="https://i.imgur.com/Ox8Vqqb.jpeg" alt="Hogar Smart Logo"
+                    style="height: 35px; margin-right: 10px; filter: invert(1); mix-blend-mode: screen;">
+                Hogar Smart
+            </div>
+            <ul class="nav-links">
+                <li><a href="Inicio.html">Inicio</a></li>
+                <li><a href="productos.html">Productos</a></li>
+                <li><a href="sobre nosotros.html">Sobre Nosotros</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li class="cart-icon" style="list-style: none;"><a href="#" id="cart-btn" style="position:relative;"><i
+                            class="fas fa-shopping-cart"></i> <span id="cart-count">0</span></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Page Title Header -->
+    <section class="page-header">
+        <img src="https://i.imgur.com/Ox8Vqqb.jpeg" alt="Hogar Smart Logo">
+        <h1>💡 Hogar Smart</h1>
+        <p>Lámparas Inteligentes para Iluminar tu Hogar Moderno</p>
+    </section>
+
+    <!-- Promo Banner -->
+    <section class="hero" id="inicio">
+        <h2>¡PROMOCIÓN EXCLUSIVA!</h2>
+        <h3>✨ Hasta 45% OFF en Lámparas Inteligentes ✨</h3>
+        <p><strong>¡Oferta válida solo por tiempo limitado!</strong></p>
+    </section>
+
+    <!-- Promos -->
+    <div class="promo-container" id="promociones">
+        <h2 style="text-align: center; color: #2d3748; margin-bottom: 10px; font-size: 2.5rem;">Nuestras Mejores Ofertas
+        </h2>
+
+        <div class="promo-grid">
+            <div class="promo-card">
+                <img src="https://m.media-amazon.com/images/I/61-PNaQMq0L._AC_SX679_.jpg"
+                    alt="Lámpara de Mesa Inteligente">
+                <div class="discount-badge">35% OFF</div>
+                <h3>Lámpara de Mesa Smart Pro</h3>
+                <div class="price">RD$<span>4,350</span> <span class="old-price">RD$<span>7,500</span></span></div>
+                <p>16M colores, control táctil, carga inalámbrica</p>
+                <a href="#" class="btn">🛒 Comprar Ahora</a>
+            </div>
+
+            <div class="promo-card">
+                <img src="http://nexxt-connectivity-frontend.s3.amazonaws.com/media/img/carrusel-NHB-S710_1.jpg"
+                    alt="Lámpara de Piso Inteligente">
+                <div class="discount-badge">45% OFF</div>
+                <h3>Lámpara de Piso Smart 3 en 1</h3>
+                <div class="price">RD$<span>6,560</span> <span class="old-price">RD$<span>12,000</span></span></div>
+                <p>3 cabezales, altavoz Bluetooth, USB integrado</p>
+                <a href="#" class="btn">🛒 Comprar Ahora</a>
+            </div>
+
+            <div class="promo-card">
+                <img src="https://domoser.com.do/wp-content/uploads/2020/05/61snxZqdPJL._AC_SY450_.jpg"
+                    alt="Tira LED Inteligente">
+                <div class="discount-badge">35% OFF</div>
+                <h3>Tira LED Smart 5M</h3>
+                <div class="price">RD$<span>1,900</span> <span class="old-price">RD$<span>3,000</span></span></div>
+                <p>16M colores, música sincronizada, corte a medida</p>
+                <a href="#" class="btn">🛒 Comprar Ahora</a>
+            </div>
+
+            <div class="promo-card">
+                <img src="https://www.gyptech.com.do/wp-content/uploads/bombilla-ren-e1648566312602.jpg"
+                    alt="Bombilla Inteligente">
+                <div class="discount-badge">30% OFF</div>
+                <h3>Pack 4 Bombillas Smart E27</h3>
+                <div class="price">RD$<span>3,490</span> <span class="old-price">RD$<span>4,950</span></span></div>
+                <p>800 lúmenes, dimmable, control por voz</p>
+                <a href="#" class="btn">🛒 Comprar Ahora</a>
+            </div>
+
+            <div class="promo-card">
+                <img src="https://http2.mlstatic.com/D_NQ_NP_2X_756733-MLA99469502684_112025-F.webp"
+                    alt="Lámpara de Techo Inteligente">
+                <div class="discount-badge">38% OFF</div>
+                <h3>Lámpara de Techo Smart 40W</h3>
+                <div class="price">RD$<span>5,200</span> <span class="old-price">RD$<span>8,400</span></span></div>
+                <p>RGB + blanco, control remoto, 360° rotación</p>
+                <a href="#" class="btn">🛒 Comprar Ahora</a>
+            </div>
+
+            <div class="promo-card">
+                <img src="https://images.bidcom.com.ar/resize?src=https://static.bidcom.com.ar/publicacionesML/productos/KDESKL02/1000x1000-KDESKL02.jpg&w=500&q=100"
+                    alt="Lámpara Escritorio LED Smart">
+                <div class="discount-badge">42% OFF</div>
+                <h3>Lámpara Escritorio LED Smart</h3>
+                <div class="price">RD$<span>2,800</span> <span class="old-price">RD$<span>4,800</span></span></div>
+                <p>Protección ocular, 5 modos brillo, USB carga</p>
+                <a href="#" class="btn">🛒 Comprar Ahora</a>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Features -->
+    <section class="features" id="productos">
+        <div class="promo-container">
+            <h3>¿Por qué elegir nuestras lámparas inteligentes?</h3>
+            <ul>
+                <li>✅ Control por app, voz y táctil</li>
+                <li>✅ Compatibles con Alexa, Google Home y Siri</li>
+                <li>✅ 16 millones de colores + blanco cálido/frío</li>
+                <li>✅ Temporizadores y escenas personalizadas</li>
+                <li>✅ Ahorro energético hasta 80%</li>
+                <li>✅ Instalación plug & play - sin obras</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Promo Banner (Sensores) -->
+    <section class="hero" id="banner-sensores">
+        <h2>¡SENSORES SMART EN PROMOCIÓN!</h2>
+        <h3>⚡ Hasta 45% OFF en Sensores Inteligentes ⚡</h3>
+        <p><strong>¡Protege tu hogar con tecnología de vanguardia!</strong></p>
+    </section>
+
+    <!-- Promos (Sensores) -->
+    <div class="promo-container" id="sensores">
+        <h2 style="text-align: center; color: #2d3748; margin-bottom: 10px; font-size: 2.5rem;">Sensores Inteligentes
+            Más Vendidos</h2>
+
+        <div class="promo-grid">
+            <div class="promo-card">
+                <img src="https://portatilshoprd.com/wp-content/uploads/2022/02/2B5DA38B-B8C7-438F-865A-45D9B079C2AA.jpeg"
+                    alt="Sensor de Puerta">
+                <div class="discount-badge">40% OFF</div>
+                <h3>Sensor Puerta/Ventana</h3>
+                <div class="price">RD$<span>1,740</span> <span class="old-price">RD$<span>2,940</span></span></div>
+                <p>Notificaciones instantáneas, batería 2 años, WiFi/Zigbee</p>
+                <a href="#" class="btn">🛒 Comprar Ahora</a>
+            </div>
+
+            <div class="promo-card">
+                <img src="https://m.media-amazon.com/images/I/51TRNcqQbrL._AC_SL500_.jpg" alt="Sensor de Movimiento">
+                <div class="discount-badge">45% OFF</div>
+                <h3>Sensor Movimiento PIR</h3>
+                <div class="price">RD$<span>2,340</span> <span class="old-price">RD$<span>4,140</span></span></div>
+                <p>Detección 10m, visión nocturna, alertas inteligentes</p>
+                <a href="#" class="btn">🛒 Comprar Ahora</a>
+            </div>
+
+            <div class="promo-card">
+                <img src="https://www.steren.com.do/media/catalog/product/cache/0236bbabe616ddcff749ccbc14f38bf2/image/22403f215/sensor-wi-fi-de-temperatura-y-humedad-con-pantalla-digital.jpg"
+                    alt="Sensor de Humedad">
+                <div class="discount-badge">35% OFF</div>
+                <h3>Sensor Humedad/Temp.</h3>
+                <div class="price">RD$<span>1,500</span> <span class="old-price">RD$<span>2,340</span></span></div>
+                <p>Precisión ±0.3°C, alertas de moho, histórico datos</p>
+                <a href="#" class="btn">🛒 Comprar Ahora</a>
+            </div>
+
+            <div class="promo-card">
+                <img src="https://i5.walmartimages.com/asr/f11a3ac8-08e9-4a64-9514-91457846e299.188de69080551af7b75317ead1d109cb.jpeg?odnHeight=717&odnWidth=717&odnBg=FFFFFF"
+                    alt="Sensor de Humo">
+                <div class="discount-badge">30% OFF</div>
+                <h3>Sensor Humo/CO2</h3>
+                <div class="price">RD$<span>2,940</span> <span class="old-price">RD$<span>4,140</span></span></div>
+                <p>Detección temprana, sirena 85dB, batería 5 años</p>
+                <a href="#" class="btn">🛒 Comprar Ahora</a>
+            </div>
+
+            <div class="promo-card">
+                <img src="https://www.tualarmasincuotas.es/media/wysiwyg/detectores/detector-de-inundacion.jpg"
+                    alt="Sensor de Agua">
+                <div class="discount-badge">38% OFF</div>
+                <h3>Sensor Inundación</h3>
+                <div class="price">RD$<span>1,320</span> <span class="old-price">RD$<span>2,100</span></span></div>
+                <p>Alerta fugas instantánea, cierre válvula auto, IP67</p>
+                <a href="#" class="btn">🛒 Comprar Ahora</a>
+            </div>
+
+            <div class="promo-card">
+                <img src="https://led-atomant.com/14660-large_default/sensor-de-luz-inteligente-para-interior-compatible-con-app-smart-life.jpg"
+                    alt="Sensor de Luz">
+                <div class="discount-badge">25% OFF</div>
+                <h3>Sensor Luz Ambiente</h3>
+                <div class="price">RD$<span>1,140</span> <span class="old-price">RD$<span>1,500</span></span></div>
+                <p>Control luces auto, ahorro energía 30%, programable</p>
+                <a href="#" class="btn">🛒 Comprar Ahora</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features (Sensores) -->
+    <section class="features" id="caracteristicas-sensores">
+        <div class="promo-container">
+            <h3>¿Por qué elegir nuestros sensores inteligentes?</h3>
+            <ul>
+                <li>✅ Batería ultra larga duración (2-5 años)</li>
+                <li>✅ Compatibles Alexa, Google Home, Apple HomeKit</li>
+                <li>✅ Instalación en 2 minutos sin herramientas</li>
+                <li>✅ Notificaciones push instantáneas</li>
+                <li>✅ Históricos y estadísticas en app</li>
+                <li>✅ Pack familiar con 20% descuento</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Promo Banner (Seguridad) -->
+    <section class="hero" id="banner-seguridad">
+        <h2>¡SISTEMAS DE SEGURIDAD SMART!</h2>
+        <h3>🛡️ Protege tu hogar con tecnología de vanguardia 🛡️</h3>
+        <p><strong>Cámaras 4K, alarmas y más al mejor precio.</strong></p>
+    </section>
+
+    <!-- Promos (Seguridad) -->
+    <div class="promo-container" id="seguridad">
+        <h2 style="text-align: center; color: #2d3748; margin-bottom: 10px; font-size: 2.5rem;">Dispositivos de
+            Seguridad</h2>
+
+        <div class="promo-grid">
+            <!-- Product 1 -->
+            <div class="promo-card">
+                <img src="https://m.media-amazon.com/images/I/61qRnATTTJL._AC_SX425_.jpg"
+                    alt="Cámara Exterior SmartCam Pro">
+                <div class="discount-badge">4K UHD</div>
+                <h3>Cámara Exterior SmartCam Pro</h3>
+                <div class="price">RD$<span>1,590</span></div>
+                <p style="text-align: left; font-size: 0.9em; margin-bottom: 15px;">
+                    ✅ Resolución 4K Ultra HD<br>
+                    ✅ Visión nocturna 30m<br>
+                    ✅ Detección IA personas/vehículos<br>
+                    ✅ Resistente al agua IP67
+                </p>
+                <a href="#" class="btn">🛒 Comprar Ahora</a>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="promo-card">
+                <img src="https://m.media-amazon.com/images/I/61BknC+ZDIL._AC_SX300_SY300_QL70_FMwebp_.jpg"
+                    alt="Sensor Movimiento Wireless">
+                <div class="discount-badge">Batería 3 años</div>
+                <h3>Sensor Movimiento Wireless</h3>
+                <div class="price">RD$<span>7,890</span></div>
+                <p style="text-align: left; font-size: 0.9em; margin-bottom: 15px;">
+                    ✅ Alcance 12m x 120°<br>
+                    ✅ Batería hasta 3 años<br>
+                    ✅ Alerta inmediata al celular<br>
+                    ✅ Anti-falsas alarmas
+                </p>
+                <a href="#" class="btn">🛒 Comprar Ahora</a>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="promo-card">
+                <img src="https://image.made-in-china.com/155f0j00MoVWeyYhyBbw/Wireless-WiFi-Video-Doorbell-with-Chime-Doorbell-Monitor-Smart-Ring-Video-Doorbell-Camera.webp"
+                    alt="Video Timbre SmartRing">
+                <div class="discount-badge">Video HD</div>
+                <h3>Video Timbre SmartRing</h3>
+                <div class="price">RD$<span>19,990</span></div>
+                <p style="text-align: left; font-size: 0.9em; margin-bottom: 15px;">
+                    ✅ Cámara HD 1080p<br>
+                    ✅ Audio bidireccional<br>
+                    ✅ Almacenamiento en la nube<br>
+                    ✅ Notificaciones push
+                </p>
+                <a href="#" class="btn">🛒 Comprar Ahora</a>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="promo-card">
+                <img src="https://m.media-amazon.com/images/I/71oW+A9ZxcL._AC_SY300_SX300_QL70_FMwebp_.jpg"
+                    alt="Sensor Puerta/Ventana">
+                <div class="discount-badge">Batería 2 años</div>
+                <h3>Sensor Puerta/Ventana</h3>
+                <div class="price">RD$<span>2,490</span></div>
+                <p style="text-align: left; font-size: 0.9em; margin-bottom: 15px;">
+                    ✅ Detección apertura instantánea<br>
+                    ✅ Batería 2 años<br>
+                    ✅ Instalación sin cables<br>
+                    ✅ Compatible Alexa/Google
+                </p>
+                <a href="#" class="btn">🛒 Comprar Ahora</a>
+            </div>
+
+            <!-- Product 5 -->
+            <div class="promo-card">
+                <img src="https://m.media-amazon.com/images/I/61Kyds9IIBL._AC_SX522_.jpg" alt="Sirena de Alarma Pro">
+                <div class="discount-badge">120dB</div>
+                <h3>Sirena de Alarma Pro</h3>
+                <div class="price">RD$<span>9,990</span></div>
+                <p style="text-align: left; font-size: 0.9em; margin-bottom: 15px;">
+                    ✅ 120dB potencia sonora<br>
+                    ✅ Control remoto<br>
+                    ✅ Luces estroboscópicas<br>
+                    ✅ Integración total sistema
+                </p>
+                <a href="#" class="btn">🛒 Comprar Ahora</a>
+            </div>
+
+            <!-- Product 6 -->
+            <div class="promo-card">
+                <img src="https://static.wixstatic.com/media/2b3319_3ffddcd0054644ea9d5aebc66fca637f~mv2.jpeg/v1/fill/w_498,h_498,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/2b3319_3ffddcd0054644ea9d5aebc66fca637f~mv2.jpeg"
+                    alt="Detector Humo y CO">
+                <div class="discount-badge">Batería 10 años</div>
+                <h3>Detector Humo y CO</h3>
+                <div class="price">RD$<span>4,990</span></div>
+                <p style="text-align: left; font-size: 0.9em; margin-bottom: 15px;">
+                    ✅ Detección humo y monóxido<br>
+                    ✅ Alerta al celular<br>
+                    ✅ Batería 10 años<br>
+                    ✅ Pruebas automáticas
+                </p>
+                <a href="#" class="btn">🛒 Comprar Ahora</a>
+            </div>
+
+            <!-- Product 7 -->
+            <div class="promo-card">
+                <img src="https://images.ctfassets.net/2xsswpd01u70/variant-52958218158418-en-eu/cd581a21d03787936df89cd65a386163/variant-52958218158418-en-eu.png"
+                    alt="Cámara Interior Pan/Tilt">
+                <div class="discount-badge">360°</div>
+                <h3>Cámara Interior Pan/Tilt</h3>
+                <div class="price">RD$<span>3,590</span></div>
+                <p style="text-align: left; font-size: 0.9em; margin-bottom: 15px;">
+                    ✅ 360° horizontal, 90° vertical<br>
+                    ✅ Resolución 2K<br>
+                    ✅ Seguimiento automático<br>
+                    ✅ Audio bidireccional
+                </p>
+                <a href="#" class="btn">🛒 Comprar Ahora</a>
+            </div>
+
+
+        </div>
+    </div>
+
+    <!-- Promo Banner (Clima) -->
+    <section class="hero" id="banner-clima" style="background: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);">
+        <h2>¡CLIMA INTELIGENTE PARA TU HOGAR!</h2>
+        <h3>🌬️ Controla la temperatura perfecta desde cualquier lugar 🌬️</h3>
+        <p><strong>Termostatos, purificadores y controladores de aire.</strong></p>
+    </section>
+
+    <!-- Promos (Clima) -->
+    <div class="promo-container" id="clima">
+        <h2 style="text-align: center; color: #2d3748; margin-bottom: 10px; font-size: 2.5rem;">Dispositivos de
+            Climatización</h2>
+
+        <div class="promo-grid">
+            <!-- Product 1 -->
+            <div class="promo-card">
+                <div
+                    style="height: 200px; background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%); display: flex; align-items: center; justify-content: center; font-size: 4rem; color: #0284c7; border-radius: 10px; margin-bottom: 20px;">
+                    <i class="fas fa-temperature-low"></i>
+                </div>
+                <div class="discount-badge" style="background: #0284c7;">Ahorra 30%</div>
+                <h3>Termostato Inteligente Eco</h3>
+                <div class="price">RD$<span>8,500</span></div>
+                <p style="text-align: left; font-size: 0.9em; margin-bottom: 15px;">
+                    ✅ Ahorro energético del 30%<br>
+                    ✅ Control por voz<br>
+                    ✅ Programación semanal auto<br>
+                    ✅ Compatible Alexa y Google
+                </p>
+                <a href="#" class="btn" style="background: #0ea5e9;">🛒 Comprar Ahora</a>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="promo-card">
+                <div
+                    style="height: 200px; background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%); display: flex; align-items: center; justify-content: center; font-size: 4rem; color: #0284c7; border-radius: 10px; margin-bottom: 20px;">
+                    <i class="fas fa-snowflake"></i>
+                </div>
+                <div class="discount-badge" style="background: #0284c7;">AC a Smart</div>
+                <h3>Controlador de AC Smart</h3>
+                <div class="price">RD$<span>4,200</span></div>
+                <p style="text-align: left; font-size: 0.9em; margin-bottom: 15px;">
+                    ✅ Convierte tu AC en Smart<br>
+                    ✅ Control desde el celular<br>
+                    ✅ Sensores de humedad<br>
+                    ✅ Automatización por GPS
+                </p>
+                <a href="#" class="btn" style="background: #0ea5e9;">🛒 Comprar Ahora</a>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="promo-card">
+                <div
+                    style="height: 200px; background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%); display: flex; align-items: center; justify-content: center; font-size: 4rem; color: #0284c7; border-radius: 10px; margin-bottom: 20px;">
+                    <i class="fas fa-wind"></i>
+                </div>
+                <div class="discount-badge" style="background: #0284c7;">HEPA H13</div>
+                <h3>Purificador de Aire Pro</h3>
+                <div class="price">RD$<span>12,490</span></div>
+                <p style="text-align: left; font-size: 0.9em; margin-bottom: 15px;">
+                    ✅ Filtro HEPA grado médico<br>
+                    ✅ Elimina 99.9% de virus<br>
+                    ✅ Sensor calidad de aire<br>
+                    ✅ Modo nocturno silencioso
+                </p>
+                <a href="#" class="btn" style="background: #0ea5e9;">🛒 Comprar Ahora</a>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="promo-card">
+                <div
+                    style="height: 200px; background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%); display: flex; align-items: center; justify-content: center; font-size: 4rem; color: #0284c7; border-radius: 10px; margin-bottom: 20px;">
+                    <i class="fas fa-tint"></i>
+                </div>
+                <div class="discount-badge" style="background: #0284c7;">4 Litros</div>
+                <h3>Humidificador Ultrasónico</h3>
+                <div class="price">RD$<span>2,800</span></div>
+                <p style="text-align: left; font-size: 0.9em; margin-bottom: 15px;">
+                    ✅ Capacidad para 24 horas<br>
+                    ✅ Difusor de aromaterapia<br>
+                    ✅ Apagado automático<br>
+                    ✅ Luz LED ambiente
+                </p>
+                <a href="#" class="btn" style="background: #0ea5e9;">🛒 Comprar Ahora</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Nav -->
+    <div class="bottom-nav">
+        <a href="#promociones">Lámparas</a>
+        <a href="#sensores">Sensores</a>
+        <a href="#seguridad">Seguridad</a>
+        <a href="#clima">Clima</a>
+        <a href="#contacto">Contacto</a>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contacto">
+        <p>📧 contacto@hogarsmart.com | 📱 WhatsApp: +1 234 567 890</p>
+        <p>🛒 Envíos a todo el país | 💡 Configuración gratuita</p>
+        <p style="margin-top: 10px; color: white;"><strong>¡Ilumina tu hogar con tecnología! Stock limitado 🔥</strong>
+        </p>
+    </footer>
+
+    <!-- Modal de Compra -->
+    <div id="buy-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Completar Compra</h2>
+            <div class="product-summary">
+                <h3 id="modal-product-name">Nombre del Producto</h3>
+                <p id="modal-product-price" class="price" style="font-size: 1.5rem; color: #ff6b6b; font-weight: bold;">
+                    RD$ 0</p>
+            </div>
+            <form id="purchase-form">
+                <div class="form-group">
+                    <label for="buyer-name">Nombre completo</label>
+                    <input type="text" id="buyer-name" required placeholder="Ej. Juan Pérez">
+                </div>
+                <div class="form-group">
+                    <label for="buyer-phone">Teléfono / WhatsApp</label>
+                    <input type="tel" id="buyer-phone" required placeholder="Ej. 809-000-0000">
+                </div>
+                <div class="form-group">
+                    <label for="buyer-address">Dirección de envío</label>
+                    <textarea id="buyer-address" required placeholder="Ej. Calle Principal #123, Santo Domingo"
+                        rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-confirm">Confirmar Pedido por WhatsApp</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Glassmorphism Sidebar -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2>🛒 Mi Carrito</h2>
+            <button class="close-sidebar" id="close-sidebar"><i class="fas fa-times"></i></button>
+        </div>
+
+        <div class="sidebar-search">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Buscar dispositivos...">
+        </div>
+
+        <div class="sidebar-categories">
+            <h3>Categorías</h3>
+            <div class="category-grid">
+                <a href="#promociones" class="cat-item"><i class="fas fa-lightbulb"></i> Lámparas</a>
+                <a href="#sensores" class="cat-item"><i class="fas fa-satellite-dish"></i> Sensores</a>
+                <a href="#seguridad" class="cat-item"><i class="fas fa-shield-alt"></i> Seguridad</a>
+                <a href="#clima" class="cat-item"><i class="fas fa-temperature-low"></i> Clima</a>
+            </div>
+        </div>
+
+        <div class="sidebar-featured">
+            <div class="featured-badge">🔥 Oferta</div>
+            <h4>Kit de Seguridad 4K</h4>
+            <p>Protección total al mejor precio.</p>
+            <a href="#seguridad" class="featured-link">Ver oferta →</a>
+        </div>
+
+        <div class="cart-items-container" id="cart-items-container">
+            <!-- Items added to cart will appear here -->
+        </div>
+
+        <div class="sidebar-footer">
+            <div class="cart-total">Total: <span id="sidebar-total">RD$ 0</span></div>
+            <button class="btn-checkout" id="checkout-btn">Proceder al pago</button>
+        </div>
+    </div>
+
+    <script>
+        // Header scroll effect to match Inicio.html
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.background = 'rgba(102, 126, 234, 0.95)';
+                header.style.backdropFilter = 'blur(10px)';
+            } else {
+                header.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+                header.style.backdropFilter = 'none';
+            }
+        });
+
+        // Shop Sidebar & Modal Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            // Modal Elements
+            const modal = document.getElementById('buy-modal');
+            const closeModal = document.querySelector('.close-modal');
+            const purchaseForm = document.getElementById('purchase-form');
+            const modalProductName = document.getElementById('modal-product-name');
+            const modalProductPrice = document.getElementById('modal-product-price');
+
+            // Sidebar Elements
+            const sidebar = document.getElementById('sidebar');
+            const sidebarOverlay = document.getElementById('sidebar-overlay');
+            const closeSidebarBtn = document.getElementById('close-sidebar');
+            const cartBtn = document.getElementById('cart-btn');
+            const checkoutBtn = document.getElementById('checkout-btn');
+            const cartItemsContainer = document.getElementById('cart-items-container');
+            const cartCountBadge = document.getElementById('cart-count');
+            const sidebarTotal = document.getElementById('sidebar-total');
+
+            // Cart State
+            let cart = [];
+
+            // Open/Close Sidebar
+            function openSidebar() {
+                sidebar.classList.add('active');
+                sidebarOverlay.classList.add('active');
+            }
+
+            function closeSidebar() {
+                sidebar.classList.remove('active');
+                sidebarOverlay.classList.remove('active');
+            }
+
+            cartBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                openSidebar();
+            });
+
+            closeSidebarBtn.addEventListener('click', closeSidebar);
+            sidebarOverlay.addEventListener('click', closeSidebar);
+
+            document.querySelectorAll('.cat-item').forEach(item => {
+                item.addEventListener('click', closeSidebar);
+            });
+
+            // Search logic
+            const searchInput = document.querySelector('.sidebar-search input');
+            const promoCards = document.querySelectorAll('.promo-card');
+
+            searchInput.addEventListener('input', (e) => {
+                const query = e.target.value.toLowerCase().trim();
+
+                promoCards.forEach(card => {
+                    const title = card.querySelector('h3').innerText.toLowerCase();
+                    if (title.includes(query)) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+
+            searchInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    closeSidebar();
+                    // Scroll to the first visible product
+                    const firstVisible = Array.from(promoCards).find(card => card.style.display === 'block' || card.style.display === '');
+                    if (firstVisible) {
+                        firstVisible.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                }
+            });
+
+            // "Comprar Ahora" Logic -> Add to Cart and Open Sidebar
+            const buyButtons = document.querySelectorAll('.promo-card .btn');
+
+            buyButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+
+                    const card = button.closest('.promo-card');
+                    const title = card.querySelector('h3').innerText;
+
+                    let priceStr = '';
+                    const priceSpan = card.querySelector('.price span');
+                    if (priceSpan && card.querySelector('.price').innerText.includes('RD$')) {
+                        priceStr = priceSpan.innerText;
+                    } else {
+                        priceStr = card.querySelector('.price').innerText.replace('RD$', '').trim().split(' ')[0];
+                    }
+
+                    const priceValue = parseInt(priceStr.replace(/,/g, ''));
+
+                    // Add to cart
+                    cart.push({ title, price: priceValue, priceStr });
+                    updateCartUI();
+                    openSidebar(); // Automatically open sidebar when adding
+                });
+            });
+
+            function updateCartUI() {
+                // Update badge
+                cartCountBadge.innerText = cart.length;
+
+                // Update items list
+                cartItemsContainer.innerHTML = '';
+                let total = 0;
+
+                if (cart.length === 0) {
+                    cartItemsContainer.innerHTML = '<p style="color:#94a3b8; font-size:0.9rem; text-align:center; padding: 20px 0;">Tu carrito está vacío.</p>';
+                } else {
+                    cart.forEach((item, index) => {
+                        total += item.price;
+                        cartItemsContainer.innerHTML += `
+                            <div class="cart-item">
+                                <div class="cart-item-info">
+                                    <h4>${item.title}</h4>
+                                    <p>RD$ ${item.priceStr}</p>
+                                </div>
+                                <button class="cart-item-remove" data-index="${index}" title="Eliminar producto"><i class="fas fa-trash-alt"></i></button>
+                            </div>
+                        `;
+                    });
+                }
+
+                // Update total
+                sidebarTotal.innerText = 'RD$ ' + total.toLocaleString('en-US');
+            }
+
+            // Remove items from cart
+            cartItemsContainer.addEventListener('click', (e) => {
+                const removeBtn = e.target.closest('.cart-item-remove');
+                if (removeBtn) {
+                    const index = removeBtn.getAttribute('data-index');
+                    cart.splice(index, 1);
+                    updateCartUI();
+                }
+            });
+
+            // Initialize empty cart UI
+            updateCartUI();
+
+            // Checkout Button opens the old WhatsApp modal
+            checkoutBtn.addEventListener('click', () => {
+                if (cart.length === 0) {
+                    alert("Tu carrito está vacío. Agrega algunos productos primero.");
+                    return;
+                }
+
+                // Pre-fill the modal with cart details
+                modalProductName.innerText = cart.length === 1 ? cart[0].title : "Múltiples Artículos (" + cart.length + ")";
+                modalProductPrice.innerText = sidebarTotal.innerText;
+
+                closeSidebar();
+                modal.classList.add('active');
+            });
+
+            // Close modal events
+            closeModal.addEventListener('click', () => {
+                modal.classList.remove('active');
+            });
+
+            window.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                }
+            });
+
+            // WhatsApp Checkout Submit
+            purchaseForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                const name = document.getElementById('buyer-name').value;
+                const phone = document.getElementById('buyer-phone').value;
+                const address = document.getElementById('buyer-address').value;
+
+                let productList = cart.map(item => `- ${item.title} (RD$ ${item.priceStr})`).join('\n');
+                let finalTotal = sidebarTotal.innerText;
+
+                const message = `¡Hola Hogar Smart! 🏠💡\nMe gustaría hacer un pedido:\n\n*Productos:*\n${productList}\n\n*Total:* ${finalTotal}\n\n*Mis Datos:*\n👤 Nombre: ${name}\n📞 Teléfono: ${phone}\n📍 Dirección: ${address}\n\nQuedo a la espera de confirmación.`;
+
+                const whatsappUrl = `https://wa.me/18091234567?text=${encodeURIComponent(message)}`;
+
+                window.open(whatsappUrl, '_blank');
+
+                // Empty cart after checkout
+                cart = [];
+                updateCartUI();
+                modal.classList.remove('active');
+                purchaseForm.reset();
+            });
+        });
+    </script>
+</body>
+
+</html>
